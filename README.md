@@ -109,6 +109,19 @@ The backend includes modules for:
 - `address`
 - `review`
 
+## User Controller & Routes
+
+- **Location**: `src/controllers/user.controller.js`, `src/routes/user.routes.js`
+- **Base path**: `/api/users`
+- **Common endpoints (examples)**:
+	- `POST /api/users/register` — register a new user
+	- `POST /api/users/login` — authenticate and receive a JWT
+	- `GET /api/users/profile` — get current user profile (protected)
+	- `PUT /api/users/profile` — update profile (protected)
+- **Auth**: Protected endpoints require `Authorization: Bearer <token>` header.
+
+This project now includes a dedicated user controller and route file for handling user-related actions and authentication.
+
 ## Database Connection
 
 The application connects to MongoDB using Mongoose in `src/config/db.js`.

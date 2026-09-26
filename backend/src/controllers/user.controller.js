@@ -1,5 +1,6 @@
 const User = require("../models/user.model");
 const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
 //create user
 const registerUser = async (req, res) => {
   try {
@@ -45,7 +46,8 @@ const loginUser = async (req, res) => {
         .status(404)
         .json({ message: "Email or Password is incorrect!" });
     }
-    res.status(200).json({ message: "You are logged in.", data: isEmailExist });
+    const token = jwt.sign({id : isEmailExist._id, role : isEmailExist.role}, process.env.JWT_SECRET, {expiresIn: "7d"})
+    res.status(200).json({ message: "You are logged in.", data: isEmailExist, token : token });
   } catch (error) {
     console.log(error);
   }
